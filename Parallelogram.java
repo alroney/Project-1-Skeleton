@@ -1,3 +1,10 @@
+/*
+ * Name: Andrew Roney
+ * Date: 02/01/2023
+ * Project: Project 1
+ * Description: This file contains the class definition for the Parallelogram class. It is a subclass of Polygon_ and is used to draw a parallelogram. It uses the upper left and lower right points to calculate the points of the parallelogram. It then uses the draw function from Polygon_ to draw the parallelogram. It also uses the color to fill the parallelogram.
+ */
+
 import java.awt.*;
 
 public class Parallelogram extends Polygon_ {

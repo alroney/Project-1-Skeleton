@@ -1,3 +1,10 @@
+/*
+ * Name: Andrew Roney
+ * Date: 02/01/2023
+ * Project: Project 1
+ * Description: This file contains the class definition for the IsoscelesTriangle class. It is a subclass of Polygon_ and is used to draw an isosceles triangle. It uses the top point and the height and width to calculate the points of the triangle. It then uses the draw function from Polygon_ to draw the triangle. It also uses the color to fill the triangle.
+ */
+
 import java.awt.*;
 
 public class IsoscelesTriangle extends Polygon_ {

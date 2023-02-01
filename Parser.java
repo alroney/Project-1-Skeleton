@@ -73,10 +73,12 @@ class Parser {
         }
     //region - ADDED HANDLERS - Additional handlers added for the project
         //region - TEXT - Handles the text (NOT WORKING)
+            // Text Color (int, int, int) at (int, int) "String";
             else if(imageToken == Token.TEXT){
-                String str = lexer.getLexeme();
-                Text text = new Text(color, point, str);
-                scene.addImage(text);
+                lexer.getNextToken();//Get the next token
+                String str = lexer.getLexeme();//Get the string
+                Text text = new Text(color, point, str);//Create a text object
+                scene.addImage(text);//Add the text to the scene
             }
         //endregion
         
@@ -93,16 +95,16 @@ class Parser {
             }
         //endregion
         
-        //region - PARALLELOGRAM - Handles the parallelogram (NOT WORKING)
+        //region - PARALLELOGRAM - Handles the parallelogram (WORKING)
             // Parallelogram Color (int, int, int) at (int, int) (int, int) Offset int;
             else if(imageToken == Token.PARALLELOGRAM){
-                int[] location2 = getNumberList(2);
-                Point point2 = new Point(location2[0], location2[1]);
-                verifyNextToken(Token.OFFSET);
-                verifyNextToken(Token.NUMBER);
-                offset = lexer.getNumber();
-                Parallelogram parallelogram = new Parallelogram(color, point, point2, offset);
-                scene.addImage(parallelogram);
+                int[] location2 = getNumberList(2);//Get the location of the image
+                Point point2 = new Point(location2[0], location2[1]);//Create a point object with the location of the second point
+                verifyNextToken(Token.OFFSET);//Verify that the next token is OFFSET
+                verifyNextToken(Token.NUMBER);//Verify that the next token is a number
+                offset = lexer.getNumber();//Get the offset
+                Parallelogram parallelogram = new Parallelogram(color, point, point2, offset);//Create a parallelogram object
+                scene.addImage(parallelogram);//Add the parallelogram to the scene
             }
         //endregion
 

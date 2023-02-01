@@ -36,20 +36,25 @@ class Lexer {
                     if (aToken.name().replace("_","").equals(tokenizer.sval.toUpperCase()))
                         return aToken;
                 }
-                if (tokenizer.sval.equals("IsoscelesTriangle"))
-                    return Token.ISOSCELES_TRIANGLE;
-                if (tokenizer.sval.equals("Parallelogram"))
-                    return Token.PARALLELOGRAM;
-                if (tokenizer.sval.equals("RegularPolygon"))
-                    return Token.REGULAR_POLYGON;
-                if (tokenizer.sval.equals("Offset"))
-                    return Token.OFFSET;
-                if (tokenizer.sval.equals("Text"))
-                    return Token.TEXT;
-                if (tokenizer.sval.equals("Sides"))
-                    return Token.SIDES;
-                if (tokenizer.sval.equals("Radius"))
-                    return Token.RADIUS;
+                
+                //region - ADDED - Added the following code to handle the new tokens
+                    if (tokenizer.sval.equals("IsoscelesTriangle"))
+                        return Token.ISOSCELES_TRIANGLE;
+                    if (tokenizer.sval.equals("Parallelogram"))
+                        return Token.PARALLELOGRAM;
+                    if (tokenizer.sval.equals("RegularPolygon"))
+                        return Token.REGULAR_POLYGON;
+                    if (tokenizer.sval.equals("Offset"))
+                        return Token.OFFSET;
+                    if (tokenizer.sval.equals("Text"))
+                        return Token.TEXT;
+                    if (tokenizer.sval.equals("Sides"))
+                        return Token.SIDES;
+                    if (tokenizer.sval.equals("Radius"))
+                        return Token.RADIUS;
+                    if (tokenizer.sval.equals("String"))
+                        return Token.STRING;
+                //endregion
                 return Token.IDENTIFIER;
             case StreamTokenizer.TT_EOF:
                 return Token.EOF;
