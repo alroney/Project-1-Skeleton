@@ -41,15 +41,16 @@ class Parser {
     // image -> right_triangle | rectangle
     // right_triangle -> RIGHT_TRIANGLE COLOR number_list AT number_list HEIGHT NUMBER WIDTH NUMBER ';'
     // rectangle -> RECTANGLE_ COLOR number_list AT number_list HEIGHT NUMBER WIDTH NUMBER ';'
+    // isosceles_triangle -> ISOSCELES_TRIANGLE COLOR number_list AT number_list HEIGHT NUMBER WIDTH NUMBER ';'
 
     private void parseImages(Scene scene, Token imageToken) throws LexicalError, SyntaxError, IOException {
         int height, width, offset, radius;
         verifyNextToken(Token.COLOR);
         int[] colors = getNumberList(3);
         Color color = new Color(colors[0], colors[1], colors[2]);
-        verifyNextToken(Token.AT);
-        int[] location = getNumberList(2);
-        Point point = new Point(location[0], location[1]);
+        verifyNextToken(Token.AT);//Verify that the next token is AT
+        int[] location = getNumberList(2);//Get the location of the image
+        Point point = new Point(location[0], location[1]);//Create a point object with the location
         if (imageToken == Token.RIGHT_TRIANGLE) {
             verifyNextToken(Token.HEIGHT);
             verifyNextToken(Token.NUMBER);
@@ -59,7 +60,8 @@ class Parser {
             width = lexer.getNumber();
             RightTriangle triangle = new RightTriangle(color, point, height, width);
             scene.addImage(triangle);
-        } else if (imageToken == Token.RECTANGLE) {
+        } 
+        else if (imageToken == Token.RECTANGLE) {
             verifyNextToken(Token.HEIGHT);
             verifyNextToken(Token.NUMBER);
             height = lexer.getNumber();
@@ -68,7 +70,28 @@ class Parser {
             width = lexer.getNumber();
             Rectangle rectangle = new Rectangle(color, point, height, width);
             scene.addImage(rectangle);
-        } else {
+        }
+    //region - ADDED - Addition
+
+        else if(imageToken == Token.ISOSCELES_TRIANGLE){
+            verifyNextToken(Token.HEIGHT);
+            verifyNextToken(Token.NUMBER);
+            height = lexer.getNumber();
+            verifyNextToken(Token.WIDTH);
+            verifyNextToken(Token.NUMBER);
+            width = lexer.getNumber();
+            IsoscelesTriangle isosceles_triangle = new IsoscelesTriangle(color, point, height, width);
+            scene.addImage(isosceles_triangle);
+        }
+
+        else if(imageToken == Token.TEXT){
+            String str = lexer.getLexeme();
+            Text text = new Text(color, point, str);
+            scene.addImage(text);
+        }
+    //endregion
+
+        else {
              throw new SyntaxError(lexer.getLineNo(), "Unexpected image name " + imageToken);
         }
         verifyNextToken(Token.SEMICOLON);

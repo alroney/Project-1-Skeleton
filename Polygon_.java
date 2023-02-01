@@ -21,6 +21,10 @@ class Polygon_ extends Image {
 
     // Creates a polygon object given its vertices
 
+    public Polygon_(Color color) {
+        super(color);
+    }
+
     public void createPolygon(int[] x_points, int[] y_points) {
         polygon = new Polygon(x_points, y_points, vertexCount);
     }

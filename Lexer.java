@@ -30,15 +30,10 @@ class Lexer {
             case StreamTokenizer.TT_NUMBER:
                 return Token.NUMBER;
             case StreamTokenizer.TT_WORD:
-                for (Token aToken : Token.values()) {
-                    if (aToken.ordinal() == KEYWORDS)
-                        break;
-                    if (aToken.name().replace("_","").equals(tokenizer.sval.toUpperCase()))
-                        return aToken;
-                }
-                return Token.IDENTIFIER;
+                return Token.fromString(tokenizer.sval);
             case StreamTokenizer.TT_EOF:
                 return Token.EOF;
+                
             default:
                 for (int i = 0; i < punctuation.length(); i++)
                     if (token == punctuation.charAt(i))
