@@ -71,24 +71,56 @@ class Parser {
             Rectangle rectangle = new Rectangle(color, point, height, width);
             scene.addImage(rectangle);
         }
-    //region - ADDED - Addition
+    //region - ADDED HANDLERS - Additional handlers added for the project
+        //region - TEXT - Handles the text (NOT WORKING)
+            else if(imageToken == Token.TEXT){
+                String str = lexer.getLexeme();
+                Text text = new Text(color, point, str);
+                scene.addImage(text);
+            }
+        //endregion
+        
+        //region - ISOSCELES TRIANGLE - Handles the isosceles triangle (WORKING)
+            else if(imageToken == Token.ISOSCELES_TRIANGLE){
+                verifyNextToken(Token.HEIGHT);
+                verifyNextToken(Token.NUMBER);
+                height = lexer.getNumber();
+                verifyNextToken(Token.WIDTH);
+                verifyNextToken(Token.NUMBER);
+                width = lexer.getNumber();
+                IsoscelesTriangle isosceles_triangle = new IsoscelesTriangle(color, point, height, width);
+                scene.addImage(isosceles_triangle);
+            }
+        //endregion
+        
+        //region - PARALLELOGRAM - Handles the parallelogram (NOT WORKING)
+            // Parallelogram Color (int, int, int) Point (int, int) Point (int, int) Offset int;
+            else if(imageToken == Token.PARALLELOGRAM){
+                int[] location2 = getNumberList(2);
+                Point point2 = new Point(location2[0], location2[1]);
+                verifyNextToken(Token.OFFSET);
+                verifyNextToken(Token.NUMBER);
+                offset = lexer.getNumber();
+                Parallelogram parallelogram = new Parallelogram(color, point, point2, offset);
+                scene.addImage(parallelogram);
+            }
+        //endregion
 
-        else if(imageToken == Token.ISOSCELES_TRIANGLE){
-            verifyNextToken(Token.HEIGHT);
-            verifyNextToken(Token.NUMBER);
-            height = lexer.getNumber();
-            verifyNextToken(Token.WIDTH);
-            verifyNextToken(Token.NUMBER);
-            width = lexer.getNumber();
-            IsoscelesTriangle isosceles_triangle = new IsoscelesTriangle(color, point, height, width);
-            scene.addImage(isosceles_triangle);
-        }
+        //region - REGULAR POLYGON - Handles the regular polygon (WORKING)
+            // RegularPolygon Color (int, int, int) Point (int, int) Sides int Radius int;
+            else if(imageToken == Token.REGULAR_POLYGON){
+                verifyNextToken(Token.SIDES);//Verify that the next token is SIDES
+                verifyNextToken(Token.NUMBER);//Verify that the next token is a number
+                int sides = lexer.getNumber();//Get the number of sides
+                verifyNextToken(Token.RADIUS);//Verify that the next token is RADIUS
+                verifyNextToken(Token.NUMBER);//Verify that the next token is a number
+                radius = lexer.getNumber();//Get the radius
+                RegularPolygon regular_polygon = new RegularPolygon(color, sides, point, radius);//Create a regular polygon object
+                scene.addImage(regular_polygon);//Add the regular polygon to the scene
+            }
+        //endregion
 
-        else if(imageToken == Token.TEXT){
-            String str = lexer.getLexeme();
-            Text text = new Text(color, point, str);
-            scene.addImage(text);
-        }
+
     //endregion
 
         else {
@@ -153,4 +185,6 @@ class Parser {
         if (token != expectedToken)
             throw new SyntaxError(lexer.getLineNo(), "Expecting token " + expectedToken + " not " + token);
     }
+
+    
 }

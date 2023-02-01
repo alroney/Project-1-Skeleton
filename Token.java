@@ -6,15 +6,4 @@
 // Enumerated type that defines the list of tokens
 
 enum Token {AT, COLOR, END,	HEIGHT, RECTANGLE, RIGHT_TRIANGLE, SCENE, WIDTH, COMMA, SEMICOLON, PERIOD, LEFT_PAREN,
-    RIGHT_PAREN, ISOSCELES_TRIANGLE, TEXT, IDENTIFIER, NUMBER, EOF;
-
-    //Add a new method to handle the additional case
-    public static Token fromString(String str) {
-        for (Token t : Token.values()) {
-            if (t.name().replace("_", "").equals(str.toUpperCase())) {
-                return t;
-            }
-        }
-        return IDENTIFIER;
-    }
-}
+    RIGHT_PAREN, REGULAR_POLYGON, SIDES, RADIUS, ISOSCELES_TRIANGLE, PARALLELOGRAM, TEXT,  OFFSET, IDENTIFIER, NUMBER, EOF}
