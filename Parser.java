@@ -94,7 +94,7 @@ class Parser {
         //endregion
         
         //region - PARALLELOGRAM - Handles the parallelogram (NOT WORKING)
-            // Parallelogram Color (int, int, int) Point (int, int) Point (int, int) Offset int;
+            // Parallelogram Color (int, int, int) at (int, int) (int, int) Offset int;
             else if(imageToken == Token.PARALLELOGRAM){
                 int[] location2 = getNumberList(2);
                 Point point2 = new Point(location2[0], location2[1]);
@@ -107,7 +107,7 @@ class Parser {
         //endregion
 
         //region - REGULAR POLYGON - Handles the regular polygon (WORKING)
-            // RegularPolygon Color (int, int, int) Point (int, int) Sides int Radius int;
+            // RegularPolygon Color (int, int, int) at (int, int) Sides int Radius int;
             else if(imageToken == Token.REGULAR_POLYGON){
                 verifyNextToken(Token.SIDES);//Verify that the next token is SIDES
                 verifyNextToken(Token.NUMBER);//Verify that the next token is a number
