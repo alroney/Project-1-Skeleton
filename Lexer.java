@@ -3,6 +3,14 @@
 // UMGC CITE
 // Spring 2023
 
+/*
+ * Name: Andrew Roney
+ * Date: 02/01/2023
+ * Project: Project 1
+ * Description: This file contains the class definition for the Lexer class. This class provides the lexical analyzer for the language. 
+ *  It uses the StreamTokenizer class to get the next token in the input stream. 
+ */
+
 import java.io.*;
 
 // This class provides the lexical analyzer for project 1
