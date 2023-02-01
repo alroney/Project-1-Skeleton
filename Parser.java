@@ -3,6 +3,14 @@
 // UMGC CITE
 // Spring 2023
 
+/*
+ * Name: Andrew Roney
+ * Date: 02/01/2023
+ * Project: Project 1
+ * Description: This file contains the class definition for the Parser class. It is used to parse the input file and create the scene. 
+ *  It uses the lexer to get the next token and then uses the token to determine what to do next.
+ */
+
 import java.awt.*;
 import java.io.*;
 import java.util.*;
@@ -72,7 +80,7 @@ class Parser {
             scene.addImage(rectangle);
         }
     //region - ADDED HANDLERS - Additional handlers added for the project
-        //region - TEXT - Handles the text (NOT WORKING)
+        //region - TEXT - Handles the text
             // Text Color (int, int, int) at (int, int) "String";
             else if(imageToken == Token.TEXT){
                 lexer.getNextToken();//Get the next token
@@ -82,7 +90,7 @@ class Parser {
             }
         //endregion
         
-        //region - ISOSCELES TRIANGLE - Handles the isosceles triangle (WORKING)
+        //region - ISOSCELES TRIANGLE - Handles the isosceles triangle
             else if(imageToken == Token.ISOSCELES_TRIANGLE){
                 verifyNextToken(Token.HEIGHT);
                 verifyNextToken(Token.NUMBER);
@@ -95,7 +103,7 @@ class Parser {
             }
         //endregion
         
-        //region - PARALLELOGRAM - Handles the parallelogram (WORKING)
+        //region - PARALLELOGRAM - Handles the parallelogram
             // Parallelogram Color (int, int, int) at (int, int) (int, int) Offset int;
             else if(imageToken == Token.PARALLELOGRAM){
                 int[] location2 = getNumberList(2);//Get the location of the image
@@ -108,7 +116,7 @@ class Parser {
             }
         //endregion
 
-        //region - REGULAR POLYGON - Handles the regular polygon (WORKING)
+        //region - REGULAR POLYGON - Handles the regular polygon
             // RegularPolygon Color (int, int, int) at (int, int) Sides int Radius int;
             else if(imageToken == Token.REGULAR_POLYGON){
                 verifyNextToken(Token.SIDES);//Verify that the next token is SIDES
